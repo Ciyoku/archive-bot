@@ -1,0 +1,23 @@
+name: Run Telegram Bot
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install
+        run: pip install python-telegram-bot requests
+
+      - name: Run bot
+        run: python bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          IDENTIFIER: ${{ secrets.IDENTIFIER }}
